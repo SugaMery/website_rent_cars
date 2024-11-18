@@ -1,7 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, Inject, PLATFORM_ID } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { BlogService } from '../blog.service';
 import { Title, Meta } from '@angular/platform-browser'; // Import Title and Meta services
+import { isPlatformBrowser } from '@angular/common';
 
 declare var $: any;
 declare var Swiper: any;
@@ -19,12 +20,14 @@ export class BlogDetailComponent {
     private route: ActivatedRoute,
     private blogService: BlogService,
     private titleService: Title, // Inject Title service
-    private metaService: Meta   // Inject Meta service
+    private metaService: Meta ,
+    @Inject(PLATFORM_ID) private platformId: any  // Inject Meta service
   ) { }
 
   ngOnInit(): void {
-    this.loadScripts();  // Load all required scripts
-
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadScripts(); // Call to load scripts in the browser
+    } 
     // Subscribe to route parameters and fetch blog details based on the blogId
     this.route.queryParams.subscribe(params => {
       const blogId = this.route.snapshot.paramMap.get('id');
@@ -65,7 +68,7 @@ export class BlogDetailComponent {
       const script = document.createElement('script');
       script.src = scriptSrc;
       script.onload = () => {
-       // console.log(`Script loaded successfully: ${scriptSrc}`);
+        console.log(`Script loaded successfully: ${scriptSrc}`);
         loadedScripts++;
         if (loadedScripts === scripts.length) {
           this.initializePlugins();  // Initialize plugins after all scripts have been loaded
@@ -74,10 +77,12 @@ export class BlogDetailComponent {
       script.onerror = (error) => {
         console.error(`Error loading script: ${scriptSrc}`, error);
       };
-      document.body.appendChild(script);
+      // Ensure DOM manipulation only happens in the browser
+      if (isPlatformBrowser(this.platformId)) {
+        document.body.appendChild(script);
+      }
     });
   }
-
   initializePlugins(): void {
     if (typeof $.fn.slicknav === 'function') {
       $('#menu').slicknav();  // Initialize slicknav on a menu with id "menu"

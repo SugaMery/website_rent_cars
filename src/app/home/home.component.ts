@@ -26,8 +26,9 @@ interface Voiture {
 export class HomeComponent implements OnInit {
 
   ngOnInit(): void {
-    this.loadScripts();  // Load all required scripts
-    this.loadBlogs();  // Call the loadBlogs method to fetch blog data
+    if (isPlatformBrowser(this.platformId)) {
+      this.loadScripts(); // Call to load scripts in the browser
+    }     this.loadBlogs();  // Call the loadBlogs method to fetch blog data
 
   }
 
@@ -118,7 +119,6 @@ export class HomeComponent implements OnInit {
         '/assets/js/SmoothScroll.js',
         '/assets/js/parallaxie.js',
         '/assets/js/gsap.min.js',
-        '/assets/js/magiccursor.js',
         '/assets/js/SplitText.js',
         '/assets/js/ScrollTrigger.min.js',
         '/assets/js/jquery.mb.YTPlayer.min.js',
@@ -155,7 +155,10 @@ export class HomeComponent implements OnInit {
       script.onerror = (error) => {
         console.error(`Error loading script: ${scriptSrc}`, error);
       };
-      document.body.appendChild(script);
+      // Ensure DOM manipulation only happens in the browser
+      if (isPlatformBrowser(this.platformId)) {
+        document.body.appendChild(script);
+      }
     });
   }
 
@@ -192,7 +195,7 @@ export class HomeComponent implements OnInit {
   // Method to load blogs using BlogService
   loadBlogs(): void {
     this.blogService.getBlogs().subscribe((data: Blog[]) => {
-      console.log("fffff",data)
+      //console.log("fffff",data)
       this.blogs = data;  // Assign the fetched data to blogs array
     });
   }
