@@ -31,10 +31,13 @@
             ],
             "tsConfig": "tsconfig.app.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
+              "src/favicon.ico",
+              "src/assets",
+              "src/assets/plugins",
+              "src/_redirects",
+              "src/sitemap.xml",
+              "src/google4f95420c62233e8a.html",
+              "src/robots.txt"
             ],
             "styles": [
               "src/styles.css"
@@ -94,11 +97,13 @@
             ],
             "tsConfig": "tsconfig.spec.json",
             "assets": [
-              {
-                "glob": "**/*",
-                "input": "public"
-              }
-            ],
+              "src/favicon.ico",
+              "src/assets",
+              "src/assets/plugins",
+              "src/_redirects",
+              "src/sitemap.xml",
+              "src/google4f95420c62233e8a.html",
+              "src/robots.txt"            ],
             "styles": [
               "src/styles.css"
             ],
