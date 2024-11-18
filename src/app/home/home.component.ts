@@ -119,6 +119,7 @@ export class HomeComponent implements OnInit {
         '/assets/js/SmoothScroll.js',
         '/assets/js/parallaxie.js',
         '/assets/js/gsap.min.js',
+        '/assets/js/magiccursor.js',
         '/assets/js/SplitText.js',
         '/assets/js/ScrollTrigger.min.js',
         '/assets/js/jquery.mb.YTPlayer.min.js',

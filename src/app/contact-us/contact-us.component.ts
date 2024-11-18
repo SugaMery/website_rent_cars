@@ -50,7 +50,7 @@ Message: ${message}`;
       '/assets/js/jquery-ui.js',
       '/assets/js/bootstrap.min.js',
       '/assets/js/validator.min.js',
-      '/assets/js/jquery.slicknav.js',
+      
       '/assets/js/swiper-bundle.min.js',
       '/assets/js/jquery.waypoints.min.js',
       '/assets/js/jquery.counterup.min.js',
