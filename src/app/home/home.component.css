@@ -1,8 +1,9 @@
- .hero.hero-slider .hero-slider-layout .hero-slide .hero-content {
+::ng-deep .hero.hero-slider .hero-slider-layout .hero-slide .hero-content {
     max-width: max-content !important;
 }
 
-.article-post .article-featured-img {
+
+::ng-deep .article-post .article-featured-img {
     width: 100%;
 }
 
